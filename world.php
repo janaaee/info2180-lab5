@@ -8,10 +8,28 @@ $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $p
 
 $country = $_GET['country'];
 
-$stmt = $conn->query("SELECT * FROM countries WHERE name LIKE '%$country%'");
-
-$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+if (isset($_GET['lookup']) && $_GET['lookup'] == 'cities') {
+  $stmt = $conn->query("SELECT cities.name, cities.district, cities.population FROM cities JOIN countries ON cities.country_code = countries.code WHERE countries.name LIKE '%$country%'");
+  $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>District</th>
+    <th>Population</th>
+  </tr>
+<?php foreach ($results as $row): ?>
+  <tr>
+    <td><?= $row['name']; ?></td>
+    <td><?= $row['district']; ?></td>
+    <td><?= $row['population']; ?></td>
+  </tr>
+<?php endforeach; ?>
+</table>
+<?php
+} else {
+  $stmt = $conn->query("SELECT * FROM countries WHERE name LIKE '%$country%'");
+  $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <table>
   <tr>
@@ -29,3 +47,4 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
   </tr>
 <?php endforeach; ?>
 </table>
+<?php } ?>
