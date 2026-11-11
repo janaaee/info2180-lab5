@@ -1,1 +1,27 @@
-/* Add your own styles */
+body {
+  background-color: rgb(177, 139, 209);
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background-color: #4b0082;
+  color: white;
+  padding: 10px;
+}
+
+button {
+  background-color: #4b0082;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+}
+
+th {
+  background-color: #4b0082;
+  color: white;
+  padding: 6px;
+}
+
+td {
+  padding: 6px;
+}
