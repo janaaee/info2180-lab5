@@ -12,8 +12,7 @@ header {
 button {
   background-color: #4b0082;
   color: white;
-  border: none;
-  padding: 12px 12px;
+  padding: 12px;
 }
 
 th {
